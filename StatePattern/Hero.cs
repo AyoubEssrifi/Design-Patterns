@@ -14,7 +14,9 @@ namespace StatePattern
         public Hero(string name)
         {
             this.name = name;
-            this.state = new IdleState();
+            this.state = new IdleState(); 
+            Console.WriteLine("Hero: " + this.name + " is created" + " and in state: " + this.state);
+
         }
 
         public void SetState(IHeroState state)
@@ -23,7 +25,7 @@ namespace StatePattern
             Console.WriteLine(name + " state has changed to: " + this.state );
         }
 
-        public void HandleInput(ConsoleKeyInfo key)
+        public void HandleInput(string key)
         {
             state.HandleInput(this, key);
         }

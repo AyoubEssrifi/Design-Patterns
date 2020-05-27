@@ -6,11 +6,30 @@ namespace StatePattern
 {
     public class IdleState : IHeroState
     {
-        public void HandleInput(Hero hero, ConsoleKeyInfo key)
+        private static float jumpingTime = 1000;
+        private Timer jumpingTimer = new Timer(jumpingTime);
+        public void HandleInput(Hero hero, string key)
         {
-            if (key.Key == ConsoleKey.Spacebar)
+            switch (key)
             {
-                hero.SetState(new JumpingState());
+                case " ":
+                    hero.SetState(new JumpingState());
+
+                    // Return to idle state after 1 second
+                    jumpingTimer.Start();
+
+                    if (jumpingTimer.Finished)
+                    {
+                        hero.SetState(new IdleState());
+                    }
+                    break;
+
+                case "c":
+                    hero.SetState(new DuckingState());
+                    break;
+
+                default:
+                    break;
             }
         }
     }

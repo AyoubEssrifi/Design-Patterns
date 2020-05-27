@@ -1,32 +1,42 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading;
-using System.Windows.Input;
 
 namespace StatePattern
 {
     class Program
     {
-        private static ConsoleKeyInfo key;
+
+        private static string key;
         private static Thread t;
+        private static Hero hero1;
+
+        public delegate void PressDelegate();
+        public static event PressDelegate OnPress;
         static void Main(string[] args)
         {
-            t = new Thread(new ThreadStart(GameLoop));
+            hero1 = new Hero("Ayoub");
+
+            OnPress += KeyboardInputHandler;
+
+            t = new Thread(new ThreadStart(KeyboardInput));
             t.Start();
-            key = Console.ReadKey(true);
 
         }
-
-        private static void GameLoop()
+        private static void KeyboardInput()
         {
             while (true)
             {
-                Hero hero1 = new Hero("Ayoub");
-                
-                if (Keyboard.IsKeyDown(Key.Space))
-                {
-                    hero1.HandleInput(key);
-                }
+                key = Console.ReadLine();
+                OnPress();
             }
+
+        }
+        private static void KeyboardInputHandler()
+        {
+            hero1.HandleInput(key);
         }
     }
 }
