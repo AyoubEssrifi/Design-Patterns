@@ -17,13 +17,20 @@ namespace StatePattern
         public static event PressDelegate OnPress;
         static void Main(string[] args)
         {
+            // Creating Hero
             hero1 = new Hero("Ayoub");
-
+            
+            // Subscribing to KeyboardInput Event
             OnPress += KeyboardInputHandler;
 
+            // Game Loop
             t = new Thread(new ThreadStart(KeyboardInput));
             t.Start();
 
+            while (true)
+            {
+                hero1.Update();
+            }
         }
         private static void KeyboardInput()
         {

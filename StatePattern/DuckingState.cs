@@ -10,7 +10,7 @@ namespace StatePattern
         {
             if (key == " ")
             {
-                hero.SetState(new IdleState());
+                hero.SetState(new JumpingState());
             }
         }
     }

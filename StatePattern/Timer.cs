@@ -34,7 +34,6 @@ namespace StatePattern
             // Only run when duration is greater than 0
             if (time > 0)
             {
-                Console.WriteLine(time);
                 started = true;
                 Console.WriteLine("timer started");
                 while (elapsedTime < time)
