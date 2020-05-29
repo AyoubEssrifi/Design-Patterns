@@ -7,14 +7,15 @@ namespace DoubleBufferPattern
 {
     public class Actor
     {
-        private bool slapped;
+        private bool currentSlapped;
+        private bool nextSlapped;
         private Actor facing;
         private string name;
         // Constructor
         public Actor(string name)
         {
             this.name = name;
-            slapped = false;
+            currentSlapped = false;
         }
         // Properties
         public string Name
@@ -31,15 +32,16 @@ namespace DoubleBufferPattern
         public void Slap()
         {
             Console.WriteLine(name + " is slapped");
-            slapped = true;
+            nextSlapped = true;
         }
-        public void Reset()
+        public void Swap()
         {
-            slapped = false;
+            currentSlapped = nextSlapped;
+            nextSlapped = false;
         }
         public bool WasSlapped()
         {
-            return slapped;
+            return currentSlapped;
         }
         public void Update()
         {

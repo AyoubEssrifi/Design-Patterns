@@ -21,7 +21,13 @@ namespace DoubleBufferPattern
                 Console.WriteLine("Updating actor " + i + ": " + actorList[i].Name);
                 actorList[i].Update();
             }
+
             Console.WriteLine("Update finished");
+
+            for (int i = 0; i < actorList.Count; i++)
+            {
+                actorList[i].Swap();
+            }
         }
     }
 }

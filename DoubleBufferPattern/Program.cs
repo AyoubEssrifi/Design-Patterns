@@ -15,14 +15,14 @@ namespace DoubleBufferPattern
             Actor hermiony = new Actor("hermiony");
 
             // Adding actors to scene : take 1
-            scene1.Add(harry);
-            scene1.Add(ron);
-            scene1.Add(hermiony);
+            //scene1.Add(harry);
+            //scene1.Add(ron);
+            //scene1.Add(hermiony);
 
             // Adding actors to scene : take 2
-            //scene1.Add(hermiony);
-            //scene1.Add(ron);
-            //scene1.Add(harry);
+            scene1.Add(hermiony);
+            scene1.Add(ron);
+            scene1.Add(harry);
 
             // Matchups
             harry.Face(ron);
@@ -33,7 +33,11 @@ namespace DoubleBufferPattern
             harry.Slap();
 
             // Update scene
-            scene1.Update();
+            while (true)
+            {
+                scene1.Update();
+            }
+            
         }
     }
 }
