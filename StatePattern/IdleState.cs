@@ -4,7 +4,7 @@ using System.Text;
 
 namespace StatePattern
 {
-    public class IdleState : IHeroState
+    public class IdleState : IdleStateable, IHeroState 
     {
         public void HandleInput(Hero hero, string key)
         {
@@ -12,6 +12,7 @@ namespace StatePattern
             {
                 case " ":
                     hero.SetState(new JumpingState());
+                    BackToIdleState(hero);
                     break;
 
                 case "c":

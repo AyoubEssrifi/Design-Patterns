@@ -27,10 +27,10 @@ namespace StatePattern
             t = new Thread(new ThreadStart(KeyboardInput));
             t.Start();
 
-            while (true)
-            {
-                hero1.Update();
-            }
+            //while (true)
+            //{
+            //    hero1.Update();
+            //}
         }
         private static void KeyboardInput()
         {
