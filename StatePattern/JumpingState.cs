@@ -8,9 +8,25 @@ namespace StatePattern
 {
     public class JumpingState : IHeroState
     {
-        public void HandleInput(Hero hero, string key)
+        Timer jumpingTimer;
+        public JumpingState()
+        {
+            float jumpingTime = 2;
+            jumpingTimer = new Timer(jumpingTime);
+
+            jumpingTimer.Start();
+        }
+        public void HandleInput(Hero hero, ConsoleKeyInfo keyInfo)
         {
             
+        }
+
+        public void Update(Hero hero)
+        {
+            if (jumpingTimer.Finished)
+            {
+                hero.SetState(new IdleState());
+            }
         }
     }
 }

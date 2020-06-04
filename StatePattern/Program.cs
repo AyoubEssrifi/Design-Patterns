@@ -8,12 +8,10 @@ namespace StatePattern
 {
     class Program
     {
-
-        private static string key;
-        private static Thread t;
+        private static ConsoleKeyInfo keyInfo;
         private static Hero hero1;
 
-        public delegate void PressDelegate();
+        public delegate void PressDelegate(ConsoleKeyInfo keyInfo);
         public static event PressDelegate OnPress;
         static void Main(string[] args)
         {
@@ -24,26 +22,27 @@ namespace StatePattern
             OnPress += KeyboardInputHandler;
 
             // Game Loop
-            t = new Thread(new ThreadStart(KeyboardInput));
-            t.Start();
+            //t = new Thread(new ThreadStart(processInput));
+            //t.Start();
 
-            //while (true)
-            //{
-            //    hero1.Update();
-            //}
-        }
-        private static void KeyboardInput()
-        {
             while (true)
             {
-                key = Console.ReadLine();
-                OnPress();
+                processInput();
+                hero1.Update();
+            }
+        }
+        private static void processInput()
+        {
+            if (Console.KeyAvailable)
+            {
+                keyInfo = Console.ReadKey(true);
+                OnPress(keyInfo);
             }
 
         }
-        private static void KeyboardInputHandler()
+        private static void KeyboardInputHandler(ConsoleKeyInfo keyInfo)
         {
-            hero1.HandleInput(key);
+            hero1.HandleInput(keyInfo);
         }
     }
 }

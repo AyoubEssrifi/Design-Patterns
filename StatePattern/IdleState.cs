@@ -4,24 +4,28 @@ using System.Text;
 
 namespace StatePattern
 {
-    public class IdleState : IdleStateable, IHeroState 
+    public class IdleState : IHeroState 
     {
-        public void HandleInput(Hero hero, string key)
+        public void HandleInput(Hero hero, ConsoleKeyInfo keyInfo)
         {
-            switch (key)
+            switch (keyInfo.Key)
             {
-                case " ":
+                case ConsoleKey.Spacebar:
                     hero.SetState(new JumpingState());
-                    BackToIdleState(hero);
                     break;
 
-                case "c":
+                case ConsoleKey.C:
                     hero.SetState(new DuckingState());
                     break;
 
                 default:
                     break;
             }
+        }
+
+        public void Update(Hero hero)
+        {
+            
         }
     }
 }

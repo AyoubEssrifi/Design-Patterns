@@ -4,15 +4,24 @@ using System.Text;
 
 namespace StatePattern
 {
-    public class DuckingState : IdleStateable, IHeroState
+    public class DuckingState : IHeroState
     {
-        public void HandleInput(Hero hero, string key)
+        public void HandleInput(Hero hero, ConsoleKeyInfo keyInfo)
         {
-            if (key == " ")
+            switch (keyInfo.Key)
             {
-                hero.SetState(new JumpingState());
-                BackToIdleState(hero);
+                case ConsoleKey.Spacebar:
+                    hero.SetState(new JumpingState());
+                    break;
+
+                default:
+                    break;
             }
+        }
+
+        public void Update(Hero hero)
+        {
+            
         }
     }
 }

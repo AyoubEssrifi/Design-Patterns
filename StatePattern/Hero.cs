@@ -28,24 +28,15 @@ namespace StatePattern
             Console.WriteLine(name + " state has changed to: " + this.state );
         }
 
-        public void HandleInput(string key)
+        public void HandleInput(ConsoleKeyInfo keyInfo)
         {
-            state.HandleInput(this, key);
+            state.HandleInput(this, keyInfo);
         }
 
         public void Update()
         {
-            // I think this is bad o_o
-            if (this.state.GetType().Name == "JumpingState")
-            {
-                // Return to idle state after 1 second
-                jumpingTimer.Start();
-
-                if (jumpingTimer.Finished)
-                {
-                    SetState(new IdleState());
-                }
-            }
+            // I think this is good ^o^
+            this.state.Update(this);
         }
     }
 }

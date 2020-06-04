@@ -6,7 +6,9 @@ namespace StatePattern
 {
     public interface IHeroState
     {
-        void HandleInput(Hero hero, string key);
+        void HandleInput(Hero hero, ConsoleKeyInfo keyInfo);
+
+        void Update(Hero hero);
 
     }
 }
